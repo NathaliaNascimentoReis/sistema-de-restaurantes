@@ -1,0 +1,22 @@
+{
+  "name": "atividade-avaliativa_nathalia-nascimento-reis",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathaliaNascimentoReis/sistema-de-restaurantes.git"
+  },
+  "keywords": ["BACKEND"],
+  "author": "Nathalia Nascimento Reis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NathaliaNascimentoReis/sistema-de-restaurantes/issues"
+  },
+  "homepage": "https://github.com/NathaliaNascimentoReis/sistema-de-restaurantes#readme",
+  "description": "Atividade avaliativa de BACKEND"
+}
