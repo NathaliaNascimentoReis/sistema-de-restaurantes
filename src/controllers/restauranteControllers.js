@@ -2,9 +2,28 @@ import dados from "../models/dados.js";
 const { restaurantes } = dados;
 
 const getAllRestaurantes = (req, res) => {
+  const { categoria, endereco, avaliacao, entrega } = req.query;
+  let resultado = restaurantes;
+
+  if (categoria) {
+    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+  }
+
+  if (endereco) {
+    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+  }
+  
+  if (avaliacao) {
+    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+  }
+
+  if (entrega) {
+    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+  }
+
   res.status(200).json({
-    total: restaurantes.length,
-    restaurantes: restaurantes,
+    total: resultado.length,
+    restaurantes: resultado,
   });
 };
 
