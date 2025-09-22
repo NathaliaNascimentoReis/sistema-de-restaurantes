@@ -14,7 +14,7 @@ const getAllRestaurantes = (req, res) => {
   }
 
   if (avaliacao) {
-    resultado = resultado.filter(c => c.avaliacao.toLowerCase() === avaliacao.toLowerCase());
+    resultado = resultado.avaliacao;
   }
 
   res.status(200).json({
