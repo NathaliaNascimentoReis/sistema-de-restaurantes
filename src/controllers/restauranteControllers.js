@@ -14,6 +14,7 @@ const getAllRestaurantes = (req, res) => {
   }
 
   if (avaliacao) {
+    const avaliacao = parseFloat(req.params.avaliacao)
     resultado = resultado.filter(a => a.avaliacao === avaliacao);
   }
 
