@@ -26,6 +26,24 @@ const getRestaurantesById = (req, res) => {
   });
 };
 
+const deleteRestaurantesById = (req, res) => {
+  const id = parseInt(req.params.id);
+  const restaurante = restaurantes.find((r) => r.id === id);
+
+  if (restaurante) {
+    return res.status(200).json({
+      success: true,
+      restaurante: restaurante,
+      message: `Id ${id} deletado!`
+    });
+  }
+
+  return res.status(400).json({
+    success: false,
+    message: `Restaurante ${id} não encontrada`,
+  });
+};
+
 const createRestaurante = (req, res) => {
   const {
     nome,
@@ -60,4 +78,4 @@ const createRestaurante = (req, res) => {
   });
 };
 
-export { getAllRestaurantes, getRestaurantesById, createRestaurante };
+export { getAllRestaurantes, getRestaurantesById, createRestaurante, deleteRestaurantesById };
