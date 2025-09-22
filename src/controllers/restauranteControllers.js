@@ -34,7 +34,7 @@ const deleteRestaurantesById = (req, res) => {
     return res.status(200).json({
       success: true,
       restaurante: restaurante,
-      message: `Id ${id} deletado!`
+      message: `Id ${id} deletado!`,
     });
   }
 
@@ -78,4 +78,60 @@ const createRestaurante = (req, res) => {
   });
 };
 
-export { getAllRestaurantes, getRestaurantesById, createRestaurante, deleteRestaurantesById };
+const updateRestaurante = (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const {
+    nome,
+    categoria,
+    endereco,
+    telefone,
+    horarioFuncionamento,
+    avaliacao,
+    entrega,
+  } = req.body;
+
+  const restauranteParaAtualizar = restaurantes.find((r) => r.id === id);
+
+  if (!restauranteParaAtualizar) {
+    return res.status(400).json({
+      success: false,
+      message: "Esse restaurante não existe",
+    });
+  }
+
+  const restauranteAtualizado = restaurantes.map((restaurante) => {
+    return restaurante.id === id
+      ? {
+          ...restaurante,
+          ...(nome && { nome }),
+          ...(categoria && { categoria }),
+          ...(endereco && { endereco }),
+          ...(telefone && { telefone }),
+          ...(horarioFuncionamento && { horarioFuncionamento }),
+          ...(avaliacao && { avaliacao }),
+          ...(entrega && { entrega }),
+        }
+      : restaurante;
+  });
+
+  restaurantes.splice(0, restaurantes.length, ...restauranteAtualizado);
+
+  const restauranteNovo = restaurantes.find(
+    (restaurante) => restaurante.id === id
+  );
+
+  res.status(200).json({
+    success: true,
+    message: "Restaurante atualizado com sucesso",
+    restaurante: restauranteNovo,
+  });
+};
+
+export {
+  getAllRestaurantes,
+  getRestaurantesById,
+  createRestaurante,
+  deleteRestaurantesById,
+  updateRestaurante,
+};
