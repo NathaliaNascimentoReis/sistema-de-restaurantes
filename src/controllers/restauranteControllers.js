@@ -10,15 +10,11 @@ const getAllRestaurantes = (req, res) => {
   }
 
   if (endereco) {
-    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
-  }
-  
-  if (avaliacao) {
-    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+    resultado = resultado.filter(c => c.endereco.toLowerCase() === endereco.toLowerCase());
   }
 
-  if (entrega) {
-    resultado = resultado.filter(c => c.categoria.toLowerCase() === categoria.toLowerCase());
+  if (avaliacao) {
+    resultado = resultado.filter(c => c.avaliacao.toLowerCase() === avaliacao.toLowerCase());
   }
 
   res.status(200).json({
