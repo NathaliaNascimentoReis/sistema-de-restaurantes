@@ -13,17 +13,51 @@ const getRestaurantesById = (req, res) => {
   const restaurante = restaurantes.find((r) => r.id === id);
 
   if (restaurante) {
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
-      message: `ID ${id} encontrado com sucesso!,`,
+      message: `Id ${id} encontrado!`,
       restaurante: restaurante,
     });
-  } else {
-    res.status(400).json({
-      success: false,
-      message: `Id ${id} inválido`,
-    });
   }
+
+  return res.status(400).json({
+    success: false,
+    message: `Restaurante ${id} não encontrada`,
+  });
 };
 
-export { getAllRestaurantes, getRestaurantesById };
+const createRestaurante = (req, res) => {
+  const {
+    nome,
+    categoria,
+    endereco,
+    telefone,
+    horarioFuncionamento,
+    avaliacao,
+    entrega,
+  } = req.body;
+
+  const verificaId =
+    restaurantes.length > 0 ? restaurantes[restaurantes.length - 1].id + 1 : 1;
+
+  const novoRestaurante = {
+    id: verificaId,
+    nome: nome.toLowerCase(),
+    categpria: categoria.toLowerCase(),
+    endereco: endereco.toLowerCase(),
+    telefone,
+    horarioFuncionamento,
+    avaliacao,
+    entrega,
+  };
+
+  restaurantes.push(novoRestaurante);
+
+  res.status(200).json({
+    success: true,
+    message: "Novo restaurante criado",
+    restaurante: novoRestaurante,
+  });
+};
+
+export { getAllRestaurantes, getRestaurantesById, createRestaurante };
